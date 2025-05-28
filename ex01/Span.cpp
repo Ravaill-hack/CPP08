@@ -6,7 +6,7 @@
 /*   By: lmatkows <lmatkows@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 09:33:05 by lmatkows          #+#    #+#             */
-/*   Updated: 2025/05/28 10:19:28 by lmatkows         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:52:41 by lmatkows         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,22 @@ void	Span::addNumber(int nb)
 	if (_Span.size() == static_cast<size_t>(_N))
 		throw FullSpanException();
 	_Span.push_back(nb);
+}
+
+void 	Span::addNumber(std::vector<int>::iterator itBegin, std::vector<int>::iterator itEnd)
+{
+	if (_Span.size() + std::distance(itBegin, itEnd) > static_cast<size_t>(_N))
+		throw Span::FullSpanException();
+	else
+		_Span.insert(_Span.end(), itBegin, itEnd);
+}
+
+void 	Span::addNumber(std::list<int>::iterator itBegin, std::list<int>::iterator itEnd)
+{
+	if (_Span.size() + std::distance(itBegin, itEnd) > static_cast<size_t>(_N))
+		throw Span::FullSpanException();
+	else
+		_Span.insert(_Span.end(), itBegin, itEnd);
 }
 	
 int		Span::shortestSpan() const
